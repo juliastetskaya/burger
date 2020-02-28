@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 const BreadBottomStyled = styled.div`
     height: 13%;
@@ -131,5 +132,9 @@ const ingredientTypes = {
 };
 
 const BurgerIngredient = ({ type }) => ingredientTypes[type];
+
+BurgerIngredient.propTypes = {
+    type: PropTypes.string.isRequired,
+}
 
 export default BurgerIngredient;
