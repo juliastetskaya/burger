@@ -28,14 +28,21 @@ const WrapperStyled = styled.div`
     }
 `;
 
-const Burger = ({ ingredients }) => (
-    <WrapperStyled>
-        <BurgerIngredient type='bread-top' />
-        {Object.entries(ingredients)
-            .reduce((acc, [key, value]) => [...acc, ...(Array(value).fill(key))], [])
-            .map((ingredient, index) => <BurgerIngredient key={ingredient + index} type={ingredient} />)}
-        <BurgerIngredient type='bread-bottom' />
-    </WrapperStyled>
-);
+const Burger = ({ ingredients }) => {
+    const transformIngredients = Object.entries(ingredients)
+    .reduce((acc, [key, value]) => [...acc, ...(Array(value).fill(key))], []);
+
+    return (
+        <WrapperStyled>
+            <BurgerIngredient type='bread-top' />
+            {
+                transformIngredients > 0 
+                    ? transformIngredients.map((ingredient, index) => <BurgerIngredient key={ingredient + index} type={ingredient} />)
+                    : <p>Please start adding ingredients!</p>
+            }
+            <BurgerIngredient type='bread-bottom' />
+        </WrapperStyled>
+    );
+};
 
 export default Burger;
