@@ -28,11 +28,12 @@ const WrapperStyled = styled.div`
     }
 `;
 
-const Burger = () => (
+const Burger = ({ ingredients }) => (
     <WrapperStyled>
         <BurgerIngredient type='bread-top' />
-        <BurgerIngredient type='cheese' />
-        <BurgerIngredient type='meat' />
+        {Object.entries(ingredients)
+            .reduce((acc, [key, value]) => [...acc, ...(Array(value).fill(key))], [])
+            .map((ingredient, index) => <BurgerIngredient key={ingredient + index} type={ingredient} />)}
         <BurgerIngredient type='bread-bottom' />
     </WrapperStyled>
 );
