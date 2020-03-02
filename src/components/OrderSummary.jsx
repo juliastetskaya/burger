@@ -1,8 +1,18 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+import Button from './UI/Button';
+
 const LabelStyled = styled.span`
     text-transform: capitalize;
+`;
+
+const StyledSuccessButton = styled(Button)`
+    color: #5C9210;
+`;
+
+const StyledDangerButton = styled(Button)`
+    color: #944317;
 `;
 
 const OrderSummary = ({ ingredients }) => (
@@ -16,6 +26,8 @@ const OrderSummary = ({ ingredients }) => (
                 </li>)}
         </ul>
         <p>Continue to Checkout?</p>
+        <StyledDangerButton>Cancel</StyledDangerButton>
+        <StyledSuccessButton>Continue</StyledSuccessButton>
     </>
 );
 
