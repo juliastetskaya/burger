@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 import Burger from '../components/Burger';
 import BuildControls from '../components/BuildControls';
+import Modal from '../components/UI/Modal';
+import OrderSummary from '../components/OrderSummary';
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -65,6 +67,9 @@ const BurgerBuilder = () => {
 
     return (
         <>
+            <Modal>
+                <OrderSummary ingredients={ingredients} />
+            </Modal>
             <Burger ingredients={ingredients} />
             <BuildControls
                 ingredientAdded={addIngredientHandler}
