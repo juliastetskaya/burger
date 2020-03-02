@@ -14,6 +14,49 @@ const WrapperStyled = styled.div`
     padding: 10px 0;
 `;
 
+const OrderButtonStyled = styled.button`
+    background-color: #DAD735;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #966909;
+    color: #966909;
+    font-family: inherit;
+    font-size: 1.2em;
+    padding: 15px 30px;
+    box-shadow: 2px 2px 2px #966909;
+    text-transform: uppercase;
+
+    &:hover,
+    &:active {
+        background-color: #A0DB41;
+        border: 1px solid #966909;
+        color: #966909;
+    }
+
+    &:disabled {
+        background-color: #C7C6C6;
+        cursor: not-allowed;
+        border: 1px solid #ccc;
+        color: #888888;
+    }
+
+    &:not(:disabled) {
+        animation: enable 0.3s linear;
+    }
+
+    @keyframes enable {
+        0% {
+            transform: scale(1);
+        }
+        60% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+`;
+
 const CONTROLS = [
     { label: 'Salad', type: 'salad' },
     { label: 'Bacon', type: 'bacon' },
@@ -22,7 +65,7 @@ const CONTROLS = [
 ];
 
 
-const BuildControls = ({ ingredientAdded, ingredientRemoved, disabledInfo, price }) => (
+const BuildControls = ({ ingredientAdded, ingredientRemoved, disabledInfo, price, purchasable }) => (
     <WrapperStyled>
         <p>Current Price: <strong>{price.toFixed(2)}</strong></p>
         {
@@ -34,6 +77,7 @@ const BuildControls = ({ ingredientAdded, ingredientRemoved, disabledInfo, price
                 disabled={disabledInfo[type]}
             />)
         }
+        <OrderButtonStyled disabled={!purchasable}>Order now</OrderButtonStyled>
     </WrapperStyled>
 );
 

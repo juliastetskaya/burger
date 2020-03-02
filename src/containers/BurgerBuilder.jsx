@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import Burger from '../components/Burger';
 import BuildControls from '../components/BuildControls';
@@ -23,7 +23,17 @@ const BurgerBuilder = () => {
         salad: true,
         bacon: true,
         cheese: true,
-    })
+    });
+    const [purchasable, setPurchasable] = useState(false);
+
+    const updatePurchasable = useCallback(() => {
+        const sum = Object.values(ingredients).reduce((acc, value) => acc + value, 0);
+        setPurchasable(sum > 0);
+    }, [ingredients]);
+
+    useEffect(() => {
+        updatePurchasable();
+    }, [updatePurchasable]);
 
     const addIngredientHandler = (type) => {
         setIngredients({
@@ -35,6 +45,7 @@ const BurgerBuilder = () => {
             ...disabledInfo,
             [type]: false,
         });
+        updatePurchasable();
     };
 
     const removeIngredientHandler = (type) => {
@@ -60,6 +71,7 @@ const BurgerBuilder = () => {
                 ingredientRemoved={removeIngredientHandler}
                 disabledInfo={disabledInfo}
                 price={totalPrice}
+                purchasable={purchasable}
             />
         </>
     );
