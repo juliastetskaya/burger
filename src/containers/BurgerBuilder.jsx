@@ -17,15 +17,39 @@ const BurgerBuilder = () => {
         bacon: 0,
         cheese: 0,
     });
-
-    const [totalPrice, setTotalPrice] =useState(4); 
+    const [totalPrice, setTotalPrice] = useState(4);
+    const [disabledInfo, setDisabledInfo] = useState({
+        meat: true,
+        salad: true,
+        bacon: true,
+        cheese: true,
+    })
 
     const addIngredientHandler = (type) => {
         setIngredients({
             ...ingredients,
             [type]: ingredients[type] + 1,
         });
-        setTotalPrice(() => totalPrice + INGREDIENT_PRICES[type]);
+        setTotalPrice(totalPrice + INGREDIENT_PRICES[type]);
+        setDisabledInfo({
+            ...disabledInfo,
+            [type]: false,
+        });
+    };
+
+    const removeIngredientHandler = (type) => {
+        setIngredients({
+            ...ingredients,
+            [type]: ingredients[type] - 1,
+        });
+        setTotalPrice(totalPrice - INGREDIENT_PRICES[type]);
+
+        if (ingredients[type] <= 1) {
+            setDisabledInfo({
+                ...disabledInfo,
+                [type]: true,
+            });
+        }
     };
 
     return (
@@ -33,6 +57,8 @@ const BurgerBuilder = () => {
             <Burger ingredients={ingredients} />
             <BuildControls
                 ingredientAdded={addIngredientHandler}
+                ingredientRemoved={removeIngredientHandler}
+                disabledInfo={disabledInfo}
             />
         </>
     );

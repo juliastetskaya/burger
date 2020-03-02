@@ -60,10 +60,10 @@ const StyledMoreButton = styled(ButtonStyled)`
     }
 `;
 
-const BuildControl = ({ label, added }) => (
+const BuildControl = ({ label, added, removed, disabled }) => (
     <WrapperStyled>
         <LabelStyled>{label}</LabelStyled>
-        <StyledLessButton>Less</StyledLessButton>
+        <StyledLessButton onClick={removed} disabled={disabled}>Less</StyledLessButton>
         <StyledMoreButton onClick={added}>More</StyledMoreButton>
     </WrapperStyled>
 );
