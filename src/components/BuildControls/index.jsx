@@ -65,7 +65,14 @@ const CONTROLS = [
 ];
 
 
-const BuildControls = ({ ingredientAdded, ingredientRemoved, disabledInfo, price, purchasable }) => (
+const BuildControls = ({
+    ingredientAdded,
+    ingredientRemoved,
+    disabledInfo,
+    price,
+    purchasable,
+    purchaseHandler,
+ }) => (
     <WrapperStyled>
         <p>Current Price: <strong>{price.toFixed(2)}</strong></p>
         {
@@ -77,7 +84,12 @@ const BuildControls = ({ ingredientAdded, ingredientRemoved, disabledInfo, price
                 disabled={disabledInfo[type]}
             />)
         }
-        <OrderButtonStyled disabled={!purchasable}>Order now</OrderButtonStyled>
+        <OrderButtonStyled
+            disabled={!purchasable}
+            onClick={purchaseHandler}
+        >
+            Order now
+        </OrderButtonStyled>
     </WrapperStyled>
 );
 

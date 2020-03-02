@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const WrappedStyled = styled.div`
+    transform: ${({show}) => show ? 'translateY(0)' : 'translateY(-100vh)'};
     position: fixed;
     z-index: 500;
     background-color: white;
@@ -20,6 +21,6 @@ const WrappedStyled = styled.div`
     }
 `;
 
-const Modal = ({ children }) => <WrappedStyled>{children}</WrappedStyled>;
+const Modal = ({ children, show }) => <WrappedStyled show={show}>{children}</WrappedStyled>;
 
 export default Modal;
