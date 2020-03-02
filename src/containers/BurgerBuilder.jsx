@@ -70,9 +70,13 @@ const BurgerBuilder = () => {
         setPurchasing(true);
     }
 
+    const purchaseCancelHandler = () => {
+        setPurchasing(false);
+    };
+
     return (
         <>
-            <Modal show={purchasing}>
+            <Modal show={purchasing} closeHandler={purchaseCancelHandler}>
                 <OrderSummary ingredients={ingredients} />
             </Modal>
             <Burger ingredients={ingredients} />
