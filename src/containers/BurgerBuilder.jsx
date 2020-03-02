@@ -68,16 +68,24 @@ const BurgerBuilder = () => {
 
     const purchaseHandler = () => {
         setPurchasing(true);
-    }
+    };
 
     const purchaseCancelHandler = () => {
         setPurchasing(false);
     };
 
+    const purchaseContinueHandler = () => {
+        alert('You continue!');
+    };
+
     return (
         <>
             <Modal show={purchasing} closeHandler={purchaseCancelHandler}>
-                <OrderSummary ingredients={ingredients} />
+                <OrderSummary
+                    ingredients={ingredients}
+                    purchaseCanceled={purchaseCancelHandler}
+                    purchaseContinued={purchaseContinueHandler}
+                />
             </Modal>
             <Burger ingredients={ingredients} />
             <BuildControls

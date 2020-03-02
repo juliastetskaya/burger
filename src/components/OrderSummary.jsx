@@ -15,7 +15,7 @@ const StyledDangerButton = styled(Button)`
     color: #944317;
 `;
 
-const OrderSummary = ({ ingredients }) => (
+const OrderSummary = ({ ingredients, purchaseContinued, purchaseCanceled }) => (
     <>
         <h3>Your Order</h3>
         <p>A delicious burger with the following ingredients:</p>
@@ -26,8 +26,8 @@ const OrderSummary = ({ ingredients }) => (
                 </li>)}
         </ul>
         <p>Continue to Checkout?</p>
-        <StyledDangerButton>Cancel</StyledDangerButton>
-        <StyledSuccessButton>Continue</StyledSuccessButton>
+        <StyledDangerButton clicked={purchaseCanceled}>Cancel</StyledDangerButton>
+        <StyledSuccessButton clicked={purchaseContinued}>Continue</StyledSuccessButton>
     </>
 );
 
