@@ -57,6 +57,10 @@ const OrderButtonStyled = styled.button`
     }
 `;
 
+const PriceStyled = styled.span`
+    font-weight: bold;
+`;
+
 const CONTROLS = [
     { label: 'Salad', type: 'salad' },
     { label: 'Bacon', type: 'bacon' },
@@ -74,7 +78,7 @@ const BuildControls = ({
     purchaseHandler,
  }) => (
     <WrapperStyled>
-        <p>Current Price: <strong>{price.toFixed(2)}</strong></p>
+        <p>Current Price: <PriceStyled>{price.toFixed(2)}</PriceStyled></p>
         {
             CONTROLS.map(({ label, type }) => <BuildControl
                 key={label}
