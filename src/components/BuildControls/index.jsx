@@ -22,10 +22,14 @@ const CONTROLS = [
 ];
 
 
-const BuildControls = () => (
+const BuildControls = ({ ingredientAdded }) => (
     <WrapperStyled>
         {
-            CONTROLS.map(({ label }) => <BuildControl key={label} label={label} />)
+            CONTROLS.map(({ label, type }) => <BuildControl
+                key={label}
+                label={label}
+                added={() => ingredientAdded(type)}
+            />)
         }
     </WrapperStyled>
 );

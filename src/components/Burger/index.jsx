@@ -36,7 +36,7 @@ const Burger = ({ ingredients }) => {
         <WrapperStyled>
             <BurgerIngredient type='bread-top' />
             {
-                transformIngredients > 0 
+                transformIngredients.length > 0 
                     ? transformIngredients.map((ingredient, index) => <BurgerIngredient key={ingredient + index} type={ingredient} />)
                     : <p>Please start adding ingredients!</p>
             }
