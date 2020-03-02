@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import Logo from '../Logo';
+import NavigationItems from './NavigationItems';
 
 const HeaderStyled = styled.header`
     height: 56px;
@@ -28,7 +29,7 @@ const Toolbar = () => (
         <div>MENU</div>
         <Logo />
         <NavStyled>
-            ...
+            <NavigationItems />
         </NavStyled>
     </HeaderStyled>
 );
