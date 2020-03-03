@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
 import Logo from '../Logo';
 import NavigationItems from './NavigationItems';
+import Backdrop from '../UI/Backdrop';
 
 const WrapperStyled = styled.div`
     position: fixed;
@@ -16,6 +17,7 @@ const WrapperStyled = styled.div`
     padding: 32px 16px;
     box-sizing: border-box;
     transition: transform 0.3s ease-out;
+    transform: ${({ show }) => show ? 'translateX(0)' : 'translateX(-100%)'};
 
     @media (min-width: 500px) {
         display: none;
@@ -28,14 +30,22 @@ const StyledLogo = styled(Logo)`
 `;
 
 const SideDrawer = () => {
+    const [isShown, setIsShown] = useState(true);
+
+    const closeHandler = () => {
+        setIsShown(false);
+    };
 
     return (
-        <WrapperStyled>
-            <StyledLogo />
-            <nav>
-                <NavigationItems />
-            </nav>
-        </WrapperStyled>
+        <>
+            <Backdrop show={isShown} closeHandler={closeHandler} />
+            <WrapperStyled show={isShown}>
+                <StyledLogo />
+                <nav>
+                    <NavigationItems />
+                </nav>
+            </WrapperStyled>
+        </>
     )
 };
 

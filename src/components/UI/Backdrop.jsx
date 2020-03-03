@@ -11,6 +11,6 @@ const BackdropStyled = styled.div`
     background-color: rgba(0, 0, 0, 0.5);
 `;
 
-const Backdrop = ({ show, closeHandler }) => show && <BackdropStyled onClick={closeHandler} />;
+const Backdrop = ({ show, closeHandler }) => show ? <BackdropStyled onClick={closeHandler} /> : null;
 
 export default Backdrop;
