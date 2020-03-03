@@ -24,6 +24,7 @@ const WrapperStyled = styled.div`
 
 const StyledLogo = styled(Logo)`
     height: 11%;
+    margin-bottom: 32px;
 `;
 
 const SideDrawer = () => {

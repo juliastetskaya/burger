@@ -21,6 +21,10 @@ const HeaderStyled = styled.header`
 
 const NavStyled = styled.nav`
     height: 100%;
+
+    @media (max-width: 499px) {
+        display: none;
+    }
 `;
 
 const StyledLogo = styled(Logo)`
