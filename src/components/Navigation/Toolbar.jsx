@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 import Logo from '../Logo';
 import NavigationItems from './NavigationItems';
+import DrawerToggle from './SideDrawer/DrawerToggle';
 
 const HeaderStyled = styled.header`
     height: 56px;
@@ -31,9 +32,9 @@ const StyledLogo = styled(Logo)`
     height: 80%;
 `;
 
-const Toolbar = () => (
+const Toolbar = ({ clickHandler }) => (
     <HeaderStyled>
-        <div>MENU</div>
+        <DrawerToggle clickHandler={clickHandler} />
         <StyledLogo />
         <NavStyled>
             <NavigationItems />
