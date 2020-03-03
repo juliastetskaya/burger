@@ -21,7 +21,6 @@ const HeaderStyled = styled.header`
 
 const NavStyled = styled.nav`
     height: 100%;
-
 `;
 
 const Toolbar = () => (

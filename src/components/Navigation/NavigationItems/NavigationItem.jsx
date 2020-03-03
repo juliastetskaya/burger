@@ -11,7 +11,7 @@ const ItemStyled = styled.li`
     align-items: center;
 `;
 
-const activeStyles = css`
+const activeLink = css`
     background-color: #8F5C2C;
     border-bottom: 4px solid #40A4C8;
     color: white;
@@ -25,11 +25,11 @@ const LinkStyled = styled.a`
     border-bottom: 4px solid transparent;
     box-sizing: border-box;
     display: block;
-    ${({active}) => active && activeStyles};
+    ${({active}) => active && activeLink};
 
     &:hover,
     &:active {
-        ${activeStyles}
+        ${activeLink}
     }
 `;
 
