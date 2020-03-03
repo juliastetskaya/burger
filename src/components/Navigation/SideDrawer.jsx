@@ -22,11 +22,15 @@ const WrapperStyled = styled.div`
     }
 `;
 
+const StyledLogo = styled(Logo)`
+    height: 11%;
+`;
+
 const SideDrawer = () => {
 
     return (
         <WrapperStyled>
-            <Logo />
+            <StyledLogo />
             <nav>
                 <NavigationItems />
             </nav>

@@ -23,10 +23,14 @@ const NavStyled = styled.nav`
     height: 100%;
 `;
 
+const StyledLogo = styled(Logo)`
+    height: 80%;
+`;
+
 const Toolbar = () => (
     <HeaderStyled>
         <div>MENU</div>
-        <Logo />
+        <StyledLogo />
         <NavStyled>
             <NavigationItems />
         </NavStyled>
