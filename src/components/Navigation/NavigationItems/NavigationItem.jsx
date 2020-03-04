@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
-
+import PropTypes from 'prop-types';
 
 const ItemStyled = styled.li`
     margin: 10px 0;
@@ -56,10 +56,18 @@ const LinkStyled = styled.a`
     }
 `;
 
+const propTypes = {
+    children: PropTypes.node,
+    link: PropTypes.string,
+    active: PropTypes.bool,
+};
+
 const NavigationItem = ({ children, link, active }) => (
     <ItemStyled>
         <LinkStyled href={link} active={active}>{children}</LinkStyled>
     </ItemStyled>
 );
+
+NavigationItem.propTypes = propTypes;
 
 export default NavigationItem;

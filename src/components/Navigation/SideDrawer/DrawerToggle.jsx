@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 const WrapperStyled = styled.div`
     width: 40px;
@@ -24,6 +25,10 @@ const BarStyled = styled.div`
     background-color: white;
 `;
 
+const propTypes = {
+    clickHandler: PropTypes.func,
+};
+
 const DrawerToggle = ({ clickHandler }) => (
     <WrapperStyled onClick={clickHandler}>
         <BarStyled />
@@ -31,5 +36,7 @@ const DrawerToggle = ({ clickHandler }) => (
         <BarStyled />
     </WrapperStyled>
 );
+
+DrawerToggle.propTypes = propTypes;
 
 export default DrawerToggle;

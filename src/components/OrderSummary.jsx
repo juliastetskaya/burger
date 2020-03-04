@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 import Button from './UI/Button';
 
@@ -19,6 +20,13 @@ const StyledDangerButton = styled(Button)`
     color: #944317;
 `;
 
+const propTypes = {
+    ingredients: PropTypes.object,
+    purchaseContinued: PropTypes.func,
+    purchaseCanceled: PropTypes.func,
+    price: PropTypes.number,
+};
+
 const OrderSummary = ({ ingredients, purchaseContinued, purchaseCanceled, price }) => (
     <>
         <h3>Your Order</h3>
@@ -35,5 +43,7 @@ const OrderSummary = ({ ingredients, purchaseContinued, purchaseCanceled, price 
         <StyledSuccessButton clicked={purchaseContinued}>Continue</StyledSuccessButton>
     </>
 );
+
+OrderSummary.propTypes = propTypes;
 
 export default OrderSummary;

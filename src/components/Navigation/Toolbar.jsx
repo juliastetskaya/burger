@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 import Logo from '../Logo';
 import NavigationItems from './NavigationItems';
@@ -32,6 +33,10 @@ const StyledLogo = styled(Logo)`
     height: 80%;
 `;
 
+const propTypes = {
+    clickHandler: PropTypes.func,
+};
+
 const Toolbar = ({ clickHandler }) => (
     <HeaderStyled>
         <DrawerToggle clickHandler={clickHandler} />
@@ -41,5 +46,7 @@ const Toolbar = ({ clickHandler }) => (
         </NavStyled>
     </HeaderStyled>
 );
+
+Toolbar.propTypes = propTypes;
 
 export default Toolbar;

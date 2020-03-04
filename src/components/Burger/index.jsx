@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 import BurgerIngredient from './BurgerIngredient';
 
@@ -28,6 +29,10 @@ const WrapperStyled = styled.div`
     }
 `;
 
+const propTypes = {
+    ingredients: PropTypes.object,
+};
+
 const Burger = ({ ingredients }) => {
     const transformIngredients = Object.entries(ingredients)
     .reduce((acc, [key, value]) => [...acc, ...(Array(value).fill(key))], []);
@@ -44,5 +49,7 @@ const Burger = ({ ingredients }) => {
         </WrapperStyled>
     );
 };
+
+Burger.propTypes = propTypes;
 
 export default Burger;

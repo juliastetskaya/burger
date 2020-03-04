@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 const ButtonStyled = styled.button`
     background-color: transparent;
@@ -19,7 +20,15 @@ const ButtonStyled = styled.button`
     }
 `;
 
+const propTypes = {
+    children: PropTypes.node,
+    clicked: PropTypes.func,
+    className: PropTypes.string,
+};
+
 const Button = ({ children, clicked, className }) =>
     <ButtonStyled onClick={clicked} className={className}>{children}</ButtonStyled>;
+
+Button.propTypes = propTypes;
 
 export default Button;

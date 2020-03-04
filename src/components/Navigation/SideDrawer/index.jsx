@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 import Logo from '../../Logo';
 import NavigationItems from '.././NavigationItems';
@@ -29,6 +30,11 @@ const StyledLogo = styled(Logo)`
     margin-bottom: 32px;
 `;
 
+const propTypes = {
+    isShown: PropTypes.bool,
+    closeHandler: PropTypes.func,
+};
+
 const SideDrawer = ({ isShown, closeHandler }) => (
     <>
         <Backdrop show={isShown} closeHandler={closeHandler} />
@@ -40,5 +46,7 @@ const SideDrawer = ({ isShown, closeHandler }) => (
         </WrapperStyled>
     </>
 );
+
+SideDrawer.propTypes = propTypes;
 
 export default SideDrawer;

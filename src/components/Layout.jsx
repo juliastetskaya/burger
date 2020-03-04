@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 import Toolbar from './Navigation/Toolbar';
 import SideDrawer from './Navigation/SideDrawer';
@@ -8,7 +9,11 @@ const ContentStyled = styled.main`
     margin-top: 72px;
 `;
 
-const Layout = ({children}) => {
+const propTypes = {
+    children: PropTypes.node,
+};
+
+const Layout = ({ children }) => {
     const [isShown, setIsShown] = useState(false);
 
     const toggleHandler = () => {
@@ -27,5 +32,7 @@ const Layout = ({children}) => {
         </>
     );
 };
+
+Layout.propTypes = propTypes;
 
 export default Layout;

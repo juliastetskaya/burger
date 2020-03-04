@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 const WrapperStyled = styled.div`
     display: flex;
@@ -60,12 +61,26 @@ const StyledMoreButton = styled(ButtonStyled)`
     }
 `;
 
-const BuildControl = ({ label, added, removed, disabled }) => (
+const propTypes = {
+    label: PropTypes.string,
+    added: PropTypes.func,
+    removed: PropTypes.func,
+    disabled: PropTypes.bool,
+};
+
+const BuildControl = ({
+    label,
+    added,
+    removed,
+    disabled
+}) => (
     <WrapperStyled>
         <LabelStyled>{label}</LabelStyled>
         <StyledLessButton onClick={removed} disabled={disabled}>Less</StyledLessButton>
         <StyledMoreButton onClick={added}>More</StyledMoreButton>
     </WrapperStyled>
 );
+
+BuildControl.propTypes = propTypes;
 
 export default BuildControl;

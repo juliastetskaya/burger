@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 import BuildControl from './BuildControl';
 
@@ -68,6 +69,14 @@ const CONTROLS = [
     { label: 'Meat', type: 'meat' },
 ];
 
+const propTypes = {
+    ingredientAdded: PropTypes.func,
+    ingredientRemoved: PropTypes.func,
+    disabledInfo: PropTypes.object,
+    price: PropTypes.number,
+    purchasable: PropTypes.bool,
+    purchaseHandler: PropTypes.func,
+}
 
 const BuildControls = ({
     ingredientAdded,
@@ -96,5 +105,7 @@ const BuildControls = ({
         </OrderButtonStyled>
     </WrapperStyled>
 );
+
+BuildControls.propTypes = propTypes;
 
 export default BuildControls;

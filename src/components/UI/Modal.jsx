@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 import Backdrop from './Backdrop';
 
@@ -23,11 +24,19 @@ const ModalStyled = styled.div`
     }
 `;
 
+const propTypes = {
+    children: PropTypes.node,
+    show: PropTypes.bool,
+    closeHandler: PropTypes.func,
+};
+
 const Modal = ({ children, show, closeHandler }) => (
     <>
         <Backdrop show={show} closeHandler={closeHandler} />
         <ModalStyled show={show}>{children}</ModalStyled>
     </>
 );
+
+Modal.propTypes = propTypes;
 
 export default Modal;
