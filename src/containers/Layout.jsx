@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
-import Toolbar from './Navigation/Toolbar';
-import SideDrawer from './Navigation/SideDrawer';
+import Toolbar from '../components/Navigation/Toolbar';
+import SideDrawer from '../components/Navigation/SideDrawer';
 
 const ContentStyled = styled.main`
     margin-top: 72px;

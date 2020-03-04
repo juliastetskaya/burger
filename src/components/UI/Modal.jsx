@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
@@ -30,12 +30,12 @@ const propTypes = {
     closeHandler: PropTypes.func,
 };
 
-const Modal = ({ children, show, closeHandler }) => (
+const Modal = ({ children, show, closeHandler }) => useMemo(() => (
     <>
         <Backdrop show={show} closeHandler={closeHandler} />
         <ModalStyled show={show}>{children}</ModalStyled>
     </>
-);
+), [show, children, closeHandler]);
 
 Modal.propTypes = propTypes;
 
