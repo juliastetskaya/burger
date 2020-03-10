@@ -13,7 +13,10 @@ const BackdropStyled = styled.div`
 `;
 
 const propTypes = {
-    show: PropTypes.bool,
+    show: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.object,
+    ]),
     closeHandler: PropTypes.func,
 };
 

@@ -26,7 +26,10 @@ const ModalStyled = styled.div`
 
 const propTypes = {
     children: PropTypes.node,
-    show: PropTypes.bool,
+    show: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.object,
+    ]),
     closeHandler: PropTypes.func,
 };
 

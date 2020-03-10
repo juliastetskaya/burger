@@ -70,6 +70,6 @@ const LoaderStyled = styled.div`
     }
 `;
 
-const Spinner = () => <LoaderStyled>Loading...</LoaderStyled>
+const Spinner = () => <LoaderStyled />;
 
 export default Spinner;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
 import axios from '../axios';
-
+import withErrorHandler from '../hoc/withErrorHandler';
 import Burger from '../components/Burger';
 import BuildControls from '../components/BuildControls';
 import Modal from '../components/UI/Modal';
@@ -133,4 +133,4 @@ const BurgerBuilder = () => {
     );
 };
 
-export default BurgerBuilder;
+export default withErrorHandler(BurgerBuilder, axios);
