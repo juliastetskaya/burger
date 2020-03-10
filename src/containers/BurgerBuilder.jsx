@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
+import axios from '../axios';
+
 import Burger from '../components/Burger';
 import BuildControls from '../components/BuildControls';
 import Modal from '../components/UI/Modal';
@@ -75,7 +77,24 @@ const BurgerBuilder = () => {
     };
 
     const purchaseContinueHandler = () => {
-        alert('You continue!');
+        const order = {
+            ingredients,
+            price: totalPrice,
+            customer: {
+                name: 'John Smith',
+                address: {
+                    street: 'Broadway',
+                    zipCode: '358102',
+                    country: 'USA'
+                },
+                email: 'test@test.com',
+            },
+            deliveryMethod: 'fastest',
+        };
+        
+        axios.post('orders.json', order)
+            .then(response => console.log(response))
+            .catch(error => console.error(error));
     };
 
     return (
