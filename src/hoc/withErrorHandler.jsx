@@ -5,15 +5,23 @@ import Modal from '../components/UI/Modal';
 
 const withErrorHandler = (WrapperComponent, axios) => (props) => {
     const [error, setError] = useState(null);
-    useEffect(() => {
-        axios.interceptors.response.use(response => response, error => {
-            setError(error);
-        });
-        axios.interceptors.request.use(request => {
-            setError(null);
-            return request;
-        });
+
+    const responseInterceptor = axios.interceptors.response.use(response => response, error => {
+        setError(error);
     });
+
+    const requestInterceptor = axios.interceptors.request.use(request => {
+        setError(null);
+        return request;
+    });
+
+
+    useEffect(() => {
+        return () => {
+            axios.interceptors.request.eject(requestInterceptor);
+            axios.interceptors.response.eject(responseInterceptor);
+        }
+    }, [responseInterceptor, requestInterceptor]);
 
     const errorConfirmedHandler = () => {
         setError(null);

@@ -16,12 +16,7 @@ const INGREDIENT_PRICES = {
 };
 
 const BurgerBuilder = () => {
-    const [ingredients, setIngredients] = useState({
-        meat: 0,
-        salad: 0,
-        bacon: 0,
-        cheese: 0,
-    });
+    const [ingredients, setIngredients] = useState({});
     const [totalPrice, setTotalPrice] = useState(4);
     const [disabledInfo, setDisabledInfo] = useState({
         meat: true,
@@ -38,9 +33,24 @@ const BurgerBuilder = () => {
         setPurchasable(sum > 0);
     }, [ingredients]);
 
+    const updateDisabledInfo = useCallback(() => {
+        const updatedInfo = Object.entries(ingredients).reduce((acc, [type, value]) => ({
+            ...acc,
+            [type]: value <= 0,
+        }), {});
+        setDisabledInfo(updatedInfo);
+    }, [ingredients]);
+
     useEffect(() => {
         updatePurchasable();
-    }, [updatePurchasable]);
+        updateDisabledInfo();
+    }, [updatePurchasable, updateDisabledInfo]);
+
+    useEffect(() => {
+        axios.get('ingredients.json')
+            .then(response => setIngredients(response.data))
+            .catch(error => console.error(error));
+    }, []);
 
     const addIngredientHandler = (type) => {
         setIngredients({
@@ -48,11 +58,6 @@ const BurgerBuilder = () => {
             [type]: ingredients[type] + 1,
         });
         setTotalPrice(totalPrice + INGREDIENT_PRICES[type]);
-        setDisabledInfo({
-            ...disabledInfo,
-            [type]: false,
-        });
-        updatePurchasable();
     };
 
     const removeIngredientHandler = (type) => {
@@ -61,13 +66,6 @@ const BurgerBuilder = () => {
             [type]: ingredients[type] - 1,
         });
         setTotalPrice(totalPrice - INGREDIENT_PRICES[type]);
-
-        if (ingredients[type] <= 1) {
-            setDisabledInfo({
-                ...disabledInfo,
-                [type]: true,
-            });
-        }
     };
 
     const purchaseHandler = () => {
@@ -120,15 +118,23 @@ const BurgerBuilder = () => {
                         />
                 }
             </Modal>
-            <Burger ingredients={ingredients} />
-            <BuildControls
-                ingredientAdded={addIngredientHandler}
-                ingredientRemoved={removeIngredientHandler}
-                disabledInfo={disabledInfo}
-                price={totalPrice}
-                purchasable={purchasable}
-                purchaseHandler={purchaseHandler}
-            />
+            {
+                Object.keys(ingredients).length !== 0
+                    ? (
+                        <>
+                            <Burger ingredients={ingredients} />
+                            <BuildControls
+                                ingredientAdded={addIngredientHandler}
+                                ingredientRemoved={removeIngredientHandler}
+                                disabledInfo={disabledInfo}
+                                price={totalPrice}
+                                purchasable={purchasable}
+                                purchaseHandler={purchaseHandler}
+                            />
+                        </>
+                    )
+                    : <Spinner />
+            }
         </>
     );
 };
