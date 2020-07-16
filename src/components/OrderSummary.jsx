@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
-import Button from './UI/Button';
+import { DangerButton, SuccessButton } from './UI/Button';
 
 const LabelStyled = styled.span`
     text-transform: capitalize;
@@ -10,14 +10,6 @@ const LabelStyled = styled.span`
 
 const PriceStyled = styled.p`
     font-weight: bold;
-`;
-
-const StyledSuccessButton = styled(Button)`
-    color: #5C9210;
-`;
-
-const StyledDangerButton = styled(Button)`
-    color: #944317;
 `;
 
 const propTypes = {
@@ -39,8 +31,8 @@ const OrderSummary = ({ ingredients, purchaseContinued, purchaseCanceled, price 
         </ul>
         <PriceStyled>Total Price: {price.toFixed(2)}</PriceStyled>
         <p>Continue to Checkout?</p>
-        <StyledDangerButton clicked={purchaseCanceled}>Cancel</StyledDangerButton>
-        <StyledSuccessButton clicked={purchaseContinued}>Continue</StyledSuccessButton>
+        <DangerButton clicked={purchaseCanceled}>Cancel</DangerButton>
+        <SuccessButton clicked={purchaseContinued}>Continue</SuccessButton>
     </>
 );
 

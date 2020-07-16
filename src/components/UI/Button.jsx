@@ -31,4 +31,12 @@ const Button = ({ children, clicked, className }) =>
 
 Button.propTypes = propTypes;
 
+export const DangerButton = styled(Button)`
+    color: #944317;
+`;
+
+export const SuccessButton = styled(Button)`
+    color: #5C9210;
+`;
+
 export default Button;
