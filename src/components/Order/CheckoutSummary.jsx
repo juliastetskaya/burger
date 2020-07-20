@@ -25,14 +25,14 @@ const propTypes = {
     ingredients: PropTypes.object,
 }
 
-const CheckoutSummary = ({ ingredients }) => (
+const CheckoutSummary = ({ ingredients, purchaseCanceled, purchaseContinued }) => (
     <CheckoutSummaryStyled>
         <h1>We hope it tastes well!</h1>
         <BurgerWrapperStyled>
             <Burger ingredients={ingredients} />
         </BurgerWrapperStyled>
-        <DangerButton>CANCEL</DangerButton>
-        <SuccessButton>CONTINUE</SuccessButton>
+        <DangerButton clicked={purchaseCanceled}>CANCEL</DangerButton>
+        <SuccessButton clicked={purchaseContinued}>CONTINUE</SuccessButton>
     </CheckoutSummaryStyled>
 );
 
