@@ -15,7 +15,7 @@ const INGREDIENT_PRICES = {
     bacon: 0.7,
 };
 
-const BurgerBuilder = () => {
+const BurgerBuilder = ({ history }) => {
     const [ingredients, setIngredients] = useState({});
     const [totalPrice, setTotalPrice] = useState(4);
     const [disabledInfo, setDisabledInfo] = useState({
@@ -77,31 +77,32 @@ const BurgerBuilder = () => {
     };
 
     const purchaseContinueHandler = () => {
-        const order = {
-            ingredients,
-            price: totalPrice,
-            customer: {
-                name: 'John Smith',
-                address: {
-                    street: 'Broadway',
-                    zipCode: '358102',
-                    country: 'USA'
-                },
-                email: 'test@test.com',
-            },
-            deliveryMethod: 'fastest',
-        };
+        // const order = {
+        //     ingredients,
+        //     price: totalPrice,
+        //     customer: {
+        //         name: 'John Smith',
+        //         address: {
+        //             street: 'Broadway',
+        //             zipCode: '358102',
+        //             country: 'USA'
+        //         },
+        //         email: 'test@test.com',
+        //     },
+        //     deliveryMethod: 'fastest',
+        // };
 
-        setLoading(true);
-        axios.post('orders.json', order)
-            .then(() => {
-                setLoading(false);
-                setPurchasing(false);
-            })
-            .catch(() => {
-                setLoading(false);
-                setPurchasing(false);
-            });
+        // setLoading(true);
+        // axios.post('orders.json', order)
+        //     .then(() => {
+        //         setLoading(false);
+        //         setPurchasing(false);
+        //     })
+        //     .catch(() => {
+        //         setLoading(false);
+        //         setPurchasing(false);
+        //     });
+        history.push('/checkout');
     };
 
     return (
