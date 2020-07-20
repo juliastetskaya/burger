@@ -2,13 +2,9 @@ import React from 'react';
 
 import CheckoutSummary from '../components/Order/CheckoutSummary';
 
-const Checkout = ({ history }) => {
-    const ingredients = {
-        salad: 1,
-        meat: 1,
-        cheese: 1,
-        bacon: 1,
-    }
+const Checkout = ({ history, location }) => {
+    const params = new URLSearchParams(location.search);
+    const ingredients = [...params.entries()].reduce((acc, [ingredient, count]) => ({ ...acc, [ingredient]: +count }), {});
 
     const handlePurchaseContinued = () => history.replace('/checkout/contact-data');
 

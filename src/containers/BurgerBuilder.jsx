@@ -102,7 +102,18 @@ const BurgerBuilder = ({ history }) => {
         //         setLoading(false);
         //         setPurchasing(false);
         //     });
-        history.push('/checkout');
+
+        const queryString = Object.keys(ingredients)
+            .reduce((acc, ingredient) => [
+                ...acc,
+                `${encodeURIComponent(ingredient)}=${encodeURIComponent(ingredients[ingredient])}`
+            ], [])
+            .join('&');
+
+        history.push({
+            pathname: '/checkout',
+            search: queryString,
+        });
     };
 
     return (
