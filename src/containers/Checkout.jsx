@@ -1,8 +1,11 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 
 import CheckoutSummary from '../components/Order/CheckoutSummary';
 
-const Checkout = ({ history, location }) => {
+import ContactData from './ContactData';
+
+const Checkout = ({ history, location, match }) => {
     const params = new URLSearchParams(location.search);
     const ingredients = [...params.entries()].reduce((acc, [ingredient, count]) => ({ ...acc, [ingredient]: +count }), {});
 
@@ -17,6 +20,7 @@ const Checkout = ({ history, location }) => {
                 purchaseContinued={handlePurchaseContinued}
                 purchaseCanceled={handlePurchaseCanceled}
             />
+            <Route path={`${match.path}/contact-data`} component={ContactData} />
         </div>
     )
 };
