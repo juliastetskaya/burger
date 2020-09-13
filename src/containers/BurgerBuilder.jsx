@@ -26,7 +26,6 @@ const BurgerBuilder = ({ history }) => {
     });
     const [purchasable, setPurchasable] = useState(false);
     const [purchasing, setPurchasing] = useState(false);
-    const [loading, setLoading] = useState(false);
 
     const updatePurchasable = useCallback(() => {
         const sum = Object.values(ingredients).reduce((acc, value) => acc + value, 0);
@@ -77,32 +76,6 @@ const BurgerBuilder = ({ history }) => {
     };
 
     const purchaseContinueHandler = () => {
-        // const order = {
-        //     ingredients,
-        //     price: totalPrice,
-        //     customer: {
-        //         name: 'John Smith',
-        //         address: {
-        //             street: 'Broadway',
-        //             zipCode: '358102',
-        //             country: 'USA'
-        //         },
-        //         email: 'test@test.com',
-        //     },
-        //     deliveryMethod: 'fastest',
-        // };
-
-        // setLoading(true);
-        // axios.post('orders.json', order)
-        //     .then(() => {
-        //         setLoading(false);
-        //         setPurchasing(false);
-        //     })
-        //     .catch(() => {
-        //         setLoading(false);
-        //         setPurchasing(false);
-        //     });
-
         const queryString = Object.keys(ingredients)
             .reduce((acc, ingredient) => [
                 ...acc,
@@ -112,23 +85,19 @@ const BurgerBuilder = ({ history }) => {
 
         history.push({
             pathname: '/checkout',
-            search: queryString,
+            search: `${queryString}&price=${totalPrice.toFixed(2)}`,
         });
     };
 
     return (
         <>
             <Modal show={purchasing} closeHandler={purchaseCancelHandler}>
-                {
-                    loading
-                        ? <Spinner />
-                        : <OrderSummary
-                            ingredients={ingredients}
-                            purchaseCanceled={purchaseCancelHandler}
-                            purchaseContinued={purchaseContinueHandler}
-                            price={totalPrice}
-                        />
-                }
+                <OrderSummary
+                    ingredients={ingredients}
+                    purchaseCanceled={purchaseCancelHandler}
+                    purchaseContinued={purchaseContinueHandler}
+                    price={totalPrice}
+                />
             </Modal>
             {
                 Object.keys(ingredients).length !== 0
