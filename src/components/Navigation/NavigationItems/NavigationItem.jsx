@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 const ItemStyled = styled.li`
     margin: 10px 0;
@@ -30,16 +31,16 @@ const activeLink = css`
     }
 `;
 
-const LinkStyled = styled.a`
+const StyledLink = styled(NavLink)`
     color: #8F5C2C;
     text-decoration: none;
     width: 100%;
     box-sizing: border-box;
     display: block;
-    ${({active}) => active && activeLink};
 
     &:hover,
-    &:active {
+    &:active,
+    &.active {
         ${activeLink}
     }
 
@@ -62,9 +63,9 @@ const propTypes = {
     active: PropTypes.bool,
 };
 
-const NavigationItem = ({ children, link, active }) => (
+const NavigationItem = ({ children, link }) => (
     <ItemStyled>
-        <LinkStyled href={link} active={active}>{children}</LinkStyled>
+        <StyledLink to={link} exact>{children}</StyledLink>
     </ItemStyled>
 );
 
