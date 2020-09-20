@@ -4,14 +4,15 @@ import Order from '../components/Order';
 import axios from '../axios';
 import withErrorHandler from '../hoc/withErrorHandler';
 
+
 const Orders = () => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         axios.get('orders.json')
-            .then(response => {
-                setOrders(Object.values(response.data));
+            .then(({ data }) => {
+                setOrders(Object.keys(data).reduce((acc, key) => [...acc, { ...data[key], id: key }], []));
                 setLoading(false);
             })
             .catch(error => {
@@ -22,8 +23,11 @@ const Orders = () => {
 
     return (
         <div>
-            <Order />
-            <Order />
+            {
+                orders?.map(({ id, ingredients, price }) => (
+                    <Order key={id} ingredients={ingredients} price={price} />
+                ))
+            }
         </div>
     );
 };

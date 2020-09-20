@@ -10,11 +10,25 @@ const OrderStyled = styled.div`
     box-sizing: border-box;
 `;
 
-const Order = () => (
-    <OrderStyled>
-        <p>Ingredients: Salad(1)</p>
-        <p>Price: <strong>USD 5.45</strong></p>
-    </OrderStyled>
-);
+const IngredientStyled = styled.span`
+    text-transform: capitalize;
+    display: inline-block;
+    margin: 0 8px;
+    border: 1px solid #ccc;
+    padding: 5px;
+
+    &:hover {
+        background-color: #eee;
+    }
+`;
+
+const Order = ({ ingredients, price }) => (
+        <OrderStyled>
+            <p>Ingredients: {
+                Object.keys(ingredients).map(ingredient => <IngredientStyled>{ingredient} ({ingredients[ingredient]})</IngredientStyled>)
+            }</p>
+            <p>Price: <strong>USD {price}</strong></p>
+        </OrderStyled>
+    );
 
 export default Order;
